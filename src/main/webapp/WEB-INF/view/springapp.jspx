@@ -14,7 +14,7 @@
 		<body>
 			<h1>Spring App</h1>
 			<p>${message}</p>
-			<form:form commandName="javaBean" method="GET">
+			<form:form commandName="javaBean" method="POST">
 				<fieldset>
 					<legend>JavaBean</legend>
 					<label for="name">
