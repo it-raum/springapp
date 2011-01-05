@@ -21,7 +21,7 @@ import ch.itraum.springapp.model.JavaBean;
 import ch.itraum.springapp.model.ReferenceJavaBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/WEB-INF/spring/servlet-context.xml")
+@ContextConfiguration("file:./src/main/webapp/WEB-INF/spring/servlet-context.xml")
 public class SpringAppControllerTest {
 	
 	@Autowired

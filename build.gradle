@@ -31,8 +31,3 @@ dependencies {
 war.doLast {
   ant.unzip(src: war.archivePath, dest: "$buildDir/exploded")
 }
-
-test.doFirst {
-  FileCollection collection = files('src/main/webapp')
-  classpath += collection 
-}
