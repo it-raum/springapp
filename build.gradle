@@ -1,0 +1,38 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'eclipse'
+apply plugin: 'project-report'
+
+version = '1.0'
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+configurations {
+  compile.exclude module: 'commons-logging'
+}
+
+dependencies {
+  springVersion = '3.0.5.RELEASE'
+  slf4jVersion = '1.6.1'
+  logbackVersion = '0.9.27'
+
+  compile "org.springframework:spring-context:$springVersion", "org.springframework:spring-webmvc:$springVersion",
+          "org.slf4j:slf4j-api:$slf4jVersion", "org.slf4j:jcl-over-slf4j:$slf4jVersion",
+          "ch.qos.logback:logback-core:$logbackVersion", "ch.qos.logback:logback-classic:$logbackVersion"
+
+  testCompile "junit:junit:4.8.2", "org.springframework:spring-test:$springVersion", "org.easymock:easymock:3.0", "javax.servlet:servlet-api:2.5"
+}
+
+war.doLast {
+  ant.unzip(src: war.archivePath, dest: "$buildDir/exploded")
+}
+
+test.doFirst {
+  FileCollection collection = files('src/main/webapp')
+  classpath += collection 
+}
